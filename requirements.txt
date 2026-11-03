@@ -1,0 +1,8 @@
+numpy>=1.26
+pandas>=2.1
+matplotlib>=3.8
+gymnasium>=0.29
+stable-baselines3>=2.3
+torch>=2.2
+yfinance>=0.2.54
+pytest>=8.0
