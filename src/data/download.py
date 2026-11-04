@@ -1,7 +1,7 @@
 import yfinance as yf
 import json
 from datetime import datetime, timezone
-from .config import RAW_DATA_DIR
+from .config import RAW_DATA_DIR, PROJECT_ROOT
 
 
 def download_raw_data(tickers, start, end, interval="1d", auto_adjust=True):
@@ -12,6 +12,7 @@ def download_raw_data(tickers, start, end, interval="1d", auto_adjust=True):
 
     if raw_data.empty:
         raise ValueError("No data downloaded!")
+    RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
     raw_data.to_csv(data_file)
 
     meta_data = {
@@ -22,7 +23,7 @@ def download_raw_data(tickers, start, end, interval="1d", auto_adjust=True):
         "auto_adjust": auto_adjust, #to adjust for splits and dividends
         "download_at": datetime.now(timezone.utc).isoformat(),
         "yf_version": yf.__version__,
-        "data_file": str(data_file)
+        "data_file": data_file.relative_to(PROJECT_ROOT).as_posix()
     }
     json_string = json.dumps(meta_data, indent=2)
     (RAW_DATA_DIR / "meta_data.json").write_text(json_string, encoding="utf-8")

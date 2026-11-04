@@ -23,6 +23,7 @@ def main():
     test_prices = create_split(env_prices, config.TEST_SPLIT[0], config.TEST_SPLIT[1], window=30)
 
     # Save the processed data to CSV files
+    config.PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
     env_prices.to_csv(config.PROCESSED_DATA_DIR / "env_prices.csv")
 
     train_prices.to_csv(config.PROCESSED_DATA_DIR / "train_prices.csv")
