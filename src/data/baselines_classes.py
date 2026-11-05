@@ -98,22 +98,45 @@ if __name__ == "__main__":
 
 # from step_weighs():
 # info = {
-        #     "date": date,
-        #     "current_step": self.current_step,
-        #     "portfolio_value": self.portfolio_value, ******* THIS!
-        #     "net_return": float(np.expm1(portfolio_log_return)), (THIS IS ONLY FOR THE CURRENT STEP, NOT CUMULATIVE)
-        #     "portfolio_log_return": float(portfolio_log_return),
-        #     "turnover_ratio": turnover_ratio,
-        #     "transaction_cost": transaction_cost,
-        #     "transaction_cost_ratio": transaction_cost_ratio,
-        #     "target_weights": target_weights.copy(),
-        #     "weights": self.current_weights.copy(),
-        # }
+#             "date": date,
+#             "current_step": self.current_step,
+#             "portfolio_value": self.portfolio_value, ******* THIS!
+#             "net_return": float(np.expm1(portfolio_log_return)), (THIS IS ONLY FOR THE CURRENT STEP, NOT CUMULATIVE)
+#             "portfolio_log_return": float(portfolio_log_return),
+#             "turnover_ratio": turnover_ratio,
+#             "transaction_cost": transaction_cost,
+#             "transaction_cost_ratio": transaction_cost_ratio,
+#             "target_weights": target_weights.copy(),
+#             "weights": self.current_weights.copy(),
+#         }
 
-        # return observation, float(reward), terminated, truncated, info
+#         return observation, float(reward), terminated, truncated, info
 
+# ON TRAINING YEARS:
 # reasonable:
 # (.venv) (base) lizababaoglu@Lizas-MacBook-Pro ECE1508-RL-FinanceAnalyzer % python -m src.data.baselines_classes
 # Buy-and-Hold final value: 1.567
 # Equal-Weight (21d) final value: 1.64
 # Random Weights final value: 0.157
+
+    # Im gonna try validation so we can compare with PPO results...
+    # prices = pd.read_csv(config.PROCESSED_DATA_DIR / "val_prices.csv", index_col=0, parse_dates=True)
+    # start_date, end_date = config.VAL_SPLIT
+
+    # for policy in [BuyAndHold(), EqualWeight(21), RandomWeights()]:
+    #     env = PortfolioEnv(prices, start_date, end_date)
+    #     env.reset(seed=0)
+    #     done = False
+    #     while not done:
+    #         target = policy.get_weights(env)
+    #         obs, reward, terminated, truncated, info = env._step_weights(target)
+    #         done = terminated or truncated
+    #     print(policy.name, "final value:", round(info["portfolio_value"], 3))
+
+
+# ON VALIDATION YEARS:
+# (.venv) (base) lizababaoglu@Lizas-MacBook-Pro ECE1508-RL-FinanceAnalyzer % python -m src.data.baselines_classes
+# Buy-and-Hold final value: 1.336
+# Equal-Weight (21d) final value: 1.376
+# Random Weights final value: 1.045
+        

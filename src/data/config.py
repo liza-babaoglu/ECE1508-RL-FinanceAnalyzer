@@ -31,6 +31,7 @@ TRAIN_SPLIT = ("2008-01-01", "2019-01-01")
 VAL_SPLIT = ("2019-01-01", "2021-01-01")
 TEST_SPLIT = ("2021-01-01", "2026-01-01")
 
+TRADING_DAYS_PER_YEAR = 252   # one training episode = one trading year
 
 #Coverage Summary:
 #   ticker First Valid Date Last Valid Date  Valid Prices  Missing Prices
