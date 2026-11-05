@@ -5,3 +5,9 @@
 # Python caches
 __pycache__/
 *.py[cod]
+# Local Python environment and cache
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
